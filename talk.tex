@@ -33,4 +33,62 @@ here. Links to
 \href{http://www.ramaytush.com/remove-statues.html}{petitions to remove
 these statues} will be in the talk notes.
 
+\begin{frame}
+\frametitle{Python Type Hints}
+\begin{itemize}
+\item Not a new idea
+\item ...but now, checked!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Example}
+\begin{lstlisting}
+def add(x: float, y: float) -> str:
+    return str(x + y)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Progressive typing}
+\begin{lstlisting}
+def add_with_extra(x: float, y: float) -> str:
+    return str(x + y + extra())
+def extra():
+    return "0.1"
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Progressive typing}
+Type Error in \verb|add_with_extra|
+\begin{lstlisting}
+def add_with_extra(x: float, y: float) -> str:
+    return str(x + y + extra())
+def extra() -> str:
+    return "0.1"
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Progressive typing}
+Type Error in \verb|extra|
+\begin{lstlisting}
+def add_with_extra(x: float, y: float) -> str:
+    return str(x + y + extra())
+def extra() -> float:
+    return "0.1"
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Progressive typing}
+\begin{lstlisting}
+def add_with_extra(x: float, y: float) -> str:
+    return str(x + y + extra())
+def extra() -> float:
+    return 0.1
+\end{lstlisting}
+\end{frame}
+
 \end{document}
