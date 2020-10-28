@@ -192,6 +192,111 @@ Little risk
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Running Tests Normally}
+
+\begin{lstlisting}
+$ tox -e py38
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Environment Ready, Now Observe}
+\begin{lstlisting}
+$ ./.tox/py38/bin/monkeytype run -m virtue regret 
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Data Ready, Calculate Types}
+\begin{lstlisting}
+$ ./.tox/py38/bin/monkeytype stub regret
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Types Ready, Write Code}
+\begin{lstlisting}
+$ ./.tox/py38/bin/monkeytype apply regret._api
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Check the Monkey}
+\begin{lstlisting}
+$ git diff
+--- a/regret/_api.py
++++ b/regret/_api.py
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Check the Monkey}
+\begin{lstlisting}
+-    def inheritance(self, version):
++    def inheritance(self, version: str) -> Callable:
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Check the Monkey}
+\begin{lstlisting}
+     def callable(
+         self,
+-        version,
+-        replacement=None,
+-        removal_date=None,
+-        addendum=None,
+-    ):
++        version: str,
++        replacement: Optional[Callable]=None,
++        removal_date: Optional[date]=None,
++        addendum: Optional[str]=None,
++    ) -> Callable:
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Take Credit From Monkey}
+\begin{lstlisting}
+$ git checkout -b add-types
+$ git commit -a -m 'Add types to functions. I did it myself'
+\end{lstlisting} \pause
+
+Open a PR
+\end{frame}
+
+\begin{frame}
+\frametitle{Circular Imports}
+
+MonkeyType does not support them\pause
+
+and they're everywhere. \pause
+
+(But probably good to get rid of anyway.)
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Types Specificity}
+
+Under\pause and over
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusion}
+
+\begin{itemize}
+\item Types help non-linearly
+\item You already have tests (right?)
+\item Get a leg up from the monkey
+\end{itemize}
+\end{frame}
+
+
+
 
 
 
